@@ -31,7 +31,12 @@ h1, h2 {
   font-size: 1.2rem;
   height: 30px;
   margin: 25px 0px 25px 0px;
+  transition: all 0.2s ease-in-out;
   width: 60%
+}
+
+#search-bar:hover {
+  background-color: hsla(42, 92%, 50%, 0.15);
 }
 
 #sort-options {
@@ -80,9 +85,9 @@ h1, h2 {
   border-radius: 3px;
   box-shadow: #e1e1e1 1px 1px 1px 1px;
   display: block;
-  height: auto;
+  height: 70px;
   margin: auto;
-  width: 130px;
+  width: auto;
 }
 
 .name {
@@ -93,4 +98,10 @@ h1, h2 {
 
 .paragraph {
   text-align: left;
+  color: grey;
+}
+
+span {
+  border-bottom: 1px solid black;
+  color: black;
 }

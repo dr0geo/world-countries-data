@@ -2012,13 +2012,8 @@ const countries = [
   }
 ]
 
-// FIXME Return number of countries matching in heading:
+// TODO Return number of countries matching in heading:
 
-let countriesNumber = document.getElementById('countries-number');
-
-const countriesMatching = () => {
-  countriesNumber.innerHTML = `Currently, we have countries`;
-}
 
 // Create a div for each of the countries in the array:
 
@@ -2028,9 +2023,9 @@ const totalCountries = () => {
     `<div class="country">
       <img class="flag" src="${item.flag}" alt="${item.name} flag" />
       <h2 class="name">${item.name}</h2>
-      <p class="paragraph capital">Capital: ${item.capital}</p>
-      <p class="paragraph language">Languages: ${item.languages.join(', ')}</p>
-      <p class="paragraph population">Population: ${item.population}</p>
+      <p class="paragraph capital"><span>Capital</span>: ${item.capital}</p>
+      <p class="paragraph language"><span>Languages</span>: ${item.languages.join(', ')}</p>
+      <p class="paragraph population"><span>Population</span>: ${item.population}</p>
     </div>`;
   })
 }
@@ -2039,8 +2034,8 @@ const totalCountries = () => {
 
 let inputValue = document.getElementById('search-bar');
 
+
 const filterCountries = () => {
-  
   let countryCard = document.getElementsByClassName('country');
 
   if (inputValue.value === '') {
@@ -2062,5 +2057,4 @@ const filterCountries = () => {
 // Call functions and add event listeners:
 
 totalCountries();
-filterCountries();
 inputValue.addEventListener('input', filterCountries);
