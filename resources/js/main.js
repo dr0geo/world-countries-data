@@ -2037,22 +2037,29 @@ const totalCountries = () => {
 
 // Filter countries by name, capital or language:
 
-let countryName = document.getElementsByClassName('name');
-let capitalName = document.getElementsByClassName('capital');
-let languageSpoken = document.getElementsByClassName('language');
 let inputValue = document.getElementById('search-bar');
 
 const filterCountries = () => {
+  
   let countryCard = document.getElementsByClassName('country');
-  console.log(countryCard);
-  if (inputValue.value !== '') {
-    for (let i = 0 ; i < countryCard.length ; i++) {
-      if (!countryCard[i].children[1].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase())) {
-        countryCard[i].style.display = 'none';
-      }
+
+  if (inputValue.value === '') {
+    for (let j = 0 ; j < countryCard.length ; j++) {
+      countryCard[j].style.display = 'block';
     }
-  } 
+  }
+  // Search for input pattern in country name, capital or language:
+  for (let i = 0 ; i < countryCard.length ; i++) {
+    if (!countryCard[i].children[1].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase())) {
+      countryCard[i].style.display = 'none';
+    } else {
+      countryCard[i].style.display = 'block';
+    }
+  }
 }
+
+
+// Call functions and add event listeners:
 
 totalCountries();
 filterCountries();
