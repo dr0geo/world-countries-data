@@ -5,7 +5,7 @@ html {
 
 body {
   margin: auto;
-  max-width: 1440px;
+  max-width: 1540px;
   text-align: center;
   width: 95vw;
 }
@@ -46,7 +46,13 @@ h1, h2 {
   margin: 0px 15px 0px 15px;
   padding: 10px;
   text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
   width: 130px;
+}
+
+.first:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 /* Display of items in result: */
@@ -55,12 +61,13 @@ h1, h2 {
   background-color: #e1e1e1;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 50px 0px 50px 0px;
 }
 
 .country {
   background-color: white;
+  display: block;
   min-height: 270px;
   line-height: 2rem;
   margin: 10px;
@@ -69,6 +76,9 @@ h1, h2 {
 }
 
 .flag {
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+  box-shadow: #e1e1e1 1px 1px 1px 1px;
   display: block;
   height: auto;
   margin: auto;
