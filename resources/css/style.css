@@ -72,6 +72,7 @@ h1, h2 {
 
 .country {
   background-color: white;
+  box-shadow: grey 0px 0px 3px 3px;
   display: block;
   min-height: 270px;
   line-height: 2rem;
@@ -81,9 +82,8 @@ h1, h2 {
 }
 
 .flag {
-  border: 1px solid #e1e1e1;
   border-radius: 3px;
-  box-shadow: #e1e1e1 1px 1px 1px 1px;
+  box-shadow: #e1e1e1 0px 0px 2px 2px;
   display: block;
   height: 70px;
   margin: auto;
@@ -102,6 +102,6 @@ h1, h2 {
 }
 
 span {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid grey;
   color: black;
 }

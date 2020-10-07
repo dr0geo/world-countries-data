@@ -2025,7 +2025,7 @@ const totalCountries = () => {
       <h2 class="name">${item.name}</h2>
       <p class="paragraph capital"><span>Capital</span>: ${item.capital}</p>
       <p class="paragraph language"><span>Languages</span>: ${item.languages.join(', ')}</p>
-      <p class="paragraph population"><span>Population</span>: ${item.population}</p>
+      <p class="paragraph population"><span>Population</span>: ${item.population.toLocaleString('en')}</p>
     </div>`;
   })
 }
@@ -2043,7 +2043,7 @@ const filterCountries = () => {
   }
   // Search for input pattern in country name, capital or language:
   for (let i = 0 ; i < countryCard.length ; i++) {
-    if (!countryCard[i].children[1].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase())) {
+    if (!countryCard[i].children[1].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase())) {
       countryCard[i].style.display = 'none';
     } else {
       countryCard[i].style.display = 'block';
@@ -2051,22 +2051,40 @@ const filterCountries = () => {
   }
 }
 
-// Create function to sort data clicking on the appropriate button:
+// Create function to sort data by country name:
 
 const countryName = document.getElementById('name');
-let i = 0;
-sortByCountryName = () => {
-  if (i === 0) {
+let countryCounter = 0;
+
+const sortByCountryName = () => {
+  if (countryCounter === 0) {
     for (let j = 0 ; j < countries.length ; j++) {
       countryCard[j].style.order = countries.length - j;
     }
-    i = 1;
+    countryCounter = 1;
   } else {
     for (let k = 0 ; k < countries.length ; k++) {
       countryCard[k].style.order = k;
     }
-    i = 0;
+    countryCounter = 0;
   }
+}
+
+// TODO Create function to sort data by capital name:
+
+const capitalName = document.getElementById('capital');
+
+const sortByCapitalName = () => {
+  let capitalSortedArray = countries.sort((a, b) => {
+    if (a.capital < b.capital) {
+      return -1;
+    } else if (a.capital > b.capital) {
+      return 1;
+    }
+    return 0;
+  })
+  console.log(capitalSortedArray);
+  console.log(countryCard);
 }
 
 // Call functions and add event listeners:
@@ -2074,3 +2092,4 @@ sortByCountryName = () => {
 totalCountries();
 inputValue.addEventListener('input', filterCountries);
 countryName.addEventListener('click', sortByCountryName);
+capitalName.addEventListener('click', sortByCapitalName);
