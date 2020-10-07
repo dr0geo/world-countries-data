@@ -1,0 +1,86 @@
+html {
+  font-family: 'Corbel', sans-serif;
+  font-size: 14px;
+}
+
+body {
+  margin: auto;
+  max-width: 1440px;
+  text-align: center;
+  width: 95vw;
+}
+
+header {
+  background-color: #e1e1e1;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+h1, h2 {
+  color: #edab14;
+}
+
+#search-bar {
+  border: 2px solid #e1e1e1;
+  border-radius: 15px;
+  color: grey;
+  font-size: 1.2rem;
+  height: 30px;
+  margin: 25px 0px 25px 0px;
+  width: 60%
+}
+
+#sort-options {
+  display: flex;
+  justify-content: center;
+}
+
+.first {
+  background-color: #edab14;
+  border-radius: 20px;
+  height: 40px;
+  margin: 0px 15px 0px 15px;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 130px;
+}
+
+/* Display of items in result: */
+
+#result {
+  background-color: #e1e1e1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 50px 0px 50px 0px;
+}
+
+.country {
+  background-color: white;
+  min-height: 270px;
+  line-height: 2rem;
+  margin: 10px;
+  padding: 15px;
+  width: 200px;
+}
+
+.flag {
+  display: block;
+  height: auto;
+  margin: auto;
+  width: 130px;
+}
+
+.name {
+  font-size: 1.1rem;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  text-align: left;
+}
