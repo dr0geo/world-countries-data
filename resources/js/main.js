@@ -2033,11 +2033,9 @@ const totalCountries = () => {
 // Filter countries by name, capital or language:
 
 let inputValue = document.getElementById('search-bar');
-
+let countryCard = document.getElementsByClassName('country');
 
 const filterCountries = () => {
-  let countryCard = document.getElementsByClassName('country');
-
   if (inputValue.value === '') {
     for (let j = 0 ; j < countryCard.length ; j++) {
       countryCard[j].style.display = 'block';
@@ -2053,8 +2051,26 @@ const filterCountries = () => {
   }
 }
 
+// Create function to sort data clicking on the appropriate button:
+
+const countryName = document.getElementById('name');
+let i = 0;
+sortByCountryName = () => {
+  if (i === 0) {
+    for (let j = 0 ; j < countries.length ; j++) {
+      countryCard[j].style.order = countries.length - j;
+    }
+    i = 1;
+  } else {
+    for (let k = 0 ; k < countries.length ; k++) {
+      countryCard[k].style.order = k;
+    }
+    i = 0;
+  }
+}
 
 // Call functions and add event listeners:
 
 totalCountries();
 inputValue.addEventListener('input', filterCountries);
+countryName.addEventListener('click', sortByCountryName);
