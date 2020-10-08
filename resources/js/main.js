@@ -2014,8 +2014,23 @@ const countries = [
   }
 ]
 
-// TODO Return number of countries matching in heading:
+// Return number of countries matching in heading:
 
+const countriesNumber = document.getElementById('countries-number');
+
+const displayMatchingCountries = () => {
+  if (inputValue.value === '') {
+    countriesNumber.innerHTML = `Currently, we have ${countries.length} countries`;
+  } else {
+    let numberOfCountries = [];
+    for (let i = 0 ; i < countries.length ; i++) {
+      if (countryCard[i].style.display === 'block') {
+        numberOfCountries.push(i);
+      }
+    }
+    countriesNumber.innerHTML = `Currently, we have ${numberOfCountries.length} countries`;
+  }
+}
 
 // Create the initial display of the page:
 const nameArrow = document.getElementById('name-arrow');
@@ -2046,6 +2061,7 @@ let inputValue = document.getElementById('search-bar');
 let countryCard = document.getElementsByClassName('country');
 
 const filterCountries = () => {
+
   if (inputValue.value === '') {
     for (let j = 0 ; j < countryCard.length ; j++) {
       countryCard[j].style.display = 'block';
@@ -2185,10 +2201,18 @@ const sortByPopulationSize = () => {
   }
 }
 
+// Code for second part of the page (top ten population and languages):
+
+// TODO Create the div for the top ten:
+
+
+
 // Call functions and add event listeners:
 
 totalCountries();
+displayMatchingCountries();
 inputValue.addEventListener('input', filterCountries);
+inputValue.addEventListener('input', displayMatchingCountries);
 countryName.addEventListener('click', sortByCountryName);
 capitalName.addEventListener('click', sortByCapitalName);
 populationSize.addEventListener('click', sortByPopulationSize);
