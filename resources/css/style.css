@@ -17,7 +17,7 @@ header {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 400;
 }
 
@@ -174,4 +174,19 @@ span {
   background-color: #edab14;
   border-radius: 3px;
   height: 40px;
+}
+
+footer {
+  font-size: 0.9rem;
+  padding: 40px 0px;
+}
+
+a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
 }
