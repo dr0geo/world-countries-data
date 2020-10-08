@@ -1,3 +1,5 @@
+// TODO Find a way to import countries from countries_data.js
+
 const countries = [
   {
     name: 'Afghanistan',
@@ -2015,37 +2017,43 @@ const countries = [
 // TODO Return number of countries matching in heading:
 
 
-// Create a div for each of the countries in the array:
+// Create the initial display of the page:
+const nameArrow = document.getElementById('name-arrow');
+const capitalArrow = document.getElementById('capital-arrow');
+const populationArrow = document.getElementById('population-arrow');
 
 const totalCountries = () => {
+  // Create a new div for each country in countries array:
   countries.forEach(item => {
     result.innerHTML += 
     `<div class="country">
       <img class="flag" src="${item.flag}" alt="${item.name} flag" />
       <h2 class="name">${item.name}</h2>
-      <p class="paragraph capital"><span>Capital</span>: ${item.capital}</p>
+      <p class="paragraph capital" data-capital="${item.capital.toLowerCase()}"><span>Capital</span>: ${item.capital}</p>
       <p class="paragraph language"><span>Languages</span>: ${item.languages.join(', ')}</p>
-      <p class="paragraph population"><span>Population</span>: ${item.population}</p>
+      <p class="paragraph population" data-population="${item.population}"><span>Population</span>: ${item.population.toLocaleString('en')}</p>
     </div>`;
   })
+
+  // Display initial sorting arrows:
+  capitalArrow.style.display = 'none';
+  populationArrow.style.display = 'none';
 }
 
 // Filter countries by name, capital or language:
 
 let inputValue = document.getElementById('search-bar');
-
+let countryCard = document.getElementsByClassName('country');
 
 const filterCountries = () => {
-  let countryCard = document.getElementsByClassName('country');
-
   if (inputValue.value === '') {
     for (let j = 0 ; j < countryCard.length ; j++) {
       countryCard[j].style.display = 'block';
     }
   }
-  // Search for input pattern in country name, capital or language:
+  // Search for input pattern in country name, capital and language:
   for (let i = 0 ; i < countryCard.length ; i++) {
-    if (!countryCard[i].children[1].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].innerHTML.toLowerCase().includes(inputValue.value.toLowerCase())) {
+    if (!countryCard[i].children[1].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase())) {
       countryCard[i].style.display = 'none';
     } else {
       countryCard[i].style.display = 'block';
@@ -2053,8 +2061,134 @@ const filterCountries = () => {
   }
 }
 
+// Create function to sort data by country name:
+
+const countryName = document.getElementById('name');
+let countryCounter = 0;
+
+const sortByCountryName = () => {
+  if (countryCounter === 0) {
+    for (let j = 0 ; j < countries.length ; j++) {
+      countryCard[j].style.order = countries.length - j;
+    }
+    countryCounter = 1;
+    capitalCounter = 0;
+    populationCounter = 0;
+
+    nameArrow.style.display = 'block';
+    capitalArrow.style.display = 'none';
+    populationArrow.style.display = 'none';
+    nameArrow.style.borderBottom = '0px';
+    nameArrow.style.borderTop = '5px solid black';
+
+  } else {
+    for (let k = 0 ; k < countries.length ; k++) {
+      countryCard[k].style.order = k;
+    }
+    countryCounter = 0;
+    capitalCounter = 0;
+    populationCounter = 0;
+
+    nameArrow.style.display = 'block';
+    capitalArrow.style.display = 'none';
+    populationArrow.style.display = 'none';
+    nameArrow.style.borderBottom = '5px solid black';
+    nameArrow.style.borderTop = '0px';
+  }
+}
+
+// Create function to sort data by capital name:
+
+const capitalName = document.getElementById('capital');
+let capitalCounter = 0;
+
+const sortByCapitalName = () => {
+  let capitalSortedArray = countries.map(item => {
+    return item.capital.toLowerCase();
+  })
+  capitalSortedArray = capitalSortedArray.sort();
+
+  if (capitalCounter === 0) {
+    for(let i = 0 ; i < countries.length ; i++) {
+      countryCard[i].style.order = capitalSortedArray.indexOf(countryCard[i].children[2].attributes['data-capital'].value);
+    }
+    capitalCounter = 1;
+    countryCounter = 1;
+    populationCounter = 0;
+
+    nameArrow.style.display = 'none';
+    capitalArrow.style.display = 'block';
+    populationArrow.style.display = 'none';
+    capitalArrow.style.borderBottom = '5px solid black';
+    capitalArrow.style.borderTop = '0px';
+
+  } else {
+    for (let j = 0 ; j < countries.length ; j++) {
+      countryCard[j].style.order = countries.length - capitalSortedArray.indexOf(countryCard[j].children[2].attributes['data-capital'].value);
+    }
+    capitalCounter = 0;
+    countryCounter = 1;
+    populationCounter = 0;
+
+    nameArrow.style.display = 'none';
+    capitalArrow.style.display = 'block';
+    populationArrow.style.display = 'none';
+    capitalArrow.style.borderBottom = '0px';
+    capitalArrow.style.borderTop = '5px solid black';
+  }
+}
+
+// Create function to sort data by population size:
+
+const populationSize = document.getElementById('population');
+let populationCounter = 0;
+
+const sortByPopulationSize = () => {
+  // Create array with population sizes inside:
+  let populationSortedArray = countries.map(item => {
+    return item.population
+  })
+  // Sort this array ascending:
+  populationSortedArray = populationSortedArray.sort((a, b) => {
+    return a - b;
+  });
+  // Turn items of array into strings:
+  populationSortedArray = populationSortedArray.map(item => item.toString());
+  
+  if (populationCounter === 0) {
+    for(let i = 0 ; i < countries.length ; i++) {
+      countryCard[i].style.order = populationSortedArray.indexOf(countryCard[i].children[4].attributes['data-population'].value);
+    }
+    capitalCounter = 0;
+    countryCounter = 1;
+    populationCounter = 1;
+
+    nameArrow.style.display = 'none';
+    capitalArrow.style.display = 'none';
+    populationArrow.style.display = 'block';
+    populationArrow.style.borderBottom = '5px solid black';
+    populationArrow.style.borderTop = '0px';
+
+  } else {
+    for(let j = 0 ; j < countries.length ; j++) {
+      countryCard[j].style.order = countries.length - populationSortedArray.indexOf(countryCard[j].children[4].attributes['data-population'].value);
+    }
+    capitalCounter = 0;
+    countryCounter = 1;
+    populationCounter = 0;
+
+    nameArrow.style.display = 'none';
+    capitalArrow.style.display = 'none';
+    populationArrow.style.display = 'block';
+    populationArrow.style.borderBottom = '0px';
+    populationArrow.style.borderTop = '5px solid black';
+  }
+}
 
 // Call functions and add event listeners:
 
 totalCountries();
 inputValue.addEventListener('input', filterCountries);
+countryName.addEventListener('click', sortByCountryName);
+capitalName.addEventListener('click', sortByCapitalName);
+populationSize.addEventListener('click', sortByPopulationSize);
