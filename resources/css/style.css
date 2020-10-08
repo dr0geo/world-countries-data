@@ -71,15 +71,6 @@ h1, h2 {
   width: 0; 
 }
 
-.down-arrow {
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
-  display: none;
-  height: 0; 
-  width: 0; 
-}
-
 /* Display of items in result: */
 
 #result {
