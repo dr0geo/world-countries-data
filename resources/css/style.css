@@ -72,7 +72,7 @@ h1, h2 {
 
 .country {
   background-color: white;
-  box-shadow: grey 0px 0px 3px 3px;
+  box-shadow: grey 0px 2px 3px 3px;
   display: block;
   min-height: 270px;
   line-height: 2rem;

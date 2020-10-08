@@ -2023,7 +2023,7 @@ const totalCountries = () => {
     `<div class="country">
       <img class="flag" src="${item.flag}" alt="${item.name} flag" />
       <h2 class="name">${item.name}</h2>
-      <p class="paragraph capital"><span>Capital</span>: ${item.capital}</p>
+      <p class="paragraph capital" data-capital="${item.capital.toLowerCase()}"><span>Capital</span>: ${item.capital}</p>
       <p class="paragraph language"><span>Languages</span>: ${item.languages.join(', ')}</p>
       <p class="paragraph population"><span>Population</span>: ${item.population.toLocaleString('en')}</p>
     </div>`;
@@ -2041,7 +2041,7 @@ const filterCountries = () => {
       countryCard[j].style.display = 'block';
     }
   }
-  // Search for input pattern in country name, capital or language:
+  // Search for input pattern in country name, capital and language:
   for (let i = 0 ; i < countryCard.length ; i++) {
     if (!countryCard[i].children[1].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[2].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase()) && !countryCard[i].children[3].lastChild.data.toLowerCase().includes(inputValue.value.toLowerCase())) {
       countryCard[i].style.display = 'none';
@@ -2062,30 +2062,45 @@ const sortByCountryName = () => {
       countryCard[j].style.order = countries.length - j;
     }
     countryCounter = 1;
+    capitalCounter = 0;
   } else {
     for (let k = 0 ; k < countries.length ; k++) {
       countryCard[k].style.order = k;
     }
     countryCounter = 0;
+    capitalCounter = 0;
   }
 }
 
-// TODO Create function to sort data by capital name:
+// Create function to sort data by capital name:
 
 const capitalName = document.getElementById('capital');
+let capitalCounter = 0;
 
 const sortByCapitalName = () => {
-  let capitalSortedArray = countries.sort((a, b) => {
-    if (a.capital < b.capital) {
-      return -1;
-    } else if (a.capital > b.capital) {
-      return 1;
-    }
-    return 0;
+  let capitalSortedArray = countries.map(item => {
+    return item.capital.toLowerCase();
   })
-  console.log(capitalSortedArray);
-  console.log(countryCard);
+  capitalSortedArray = capitalSortedArray.sort();
+
+  if (capitalCounter === 0) {
+    for(let i = 0 ; i < countries.length ; i++) {
+      countryCard[i].style.order = capitalSortedArray.indexOf(countryCard[i].children[2].attributes['data-capital'].value);
+    }
+    capitalCounter = 1;
+    countryCounter = 1
+  } else {
+    for (let j = 0 ; j < countries.length ; j++) {
+      countryCard[j].style.order = countries.length - capitalSortedArray.indexOf(countryCard[j].children[2].attributes['data-capital'].value);
+    }
+    capitalCounter = 0;
+    countryCounter = 1;
+  }
 }
+
+//TODO Create function to sort data by population size:
+
+
 
 // Call functions and add event listeners:
 
