@@ -23,6 +23,7 @@ h1 {
 h1, h2 {
   color: #edab14;
   font-weight: 500;
+  transition: all 0.2s ease-in-out;
 }
 
 #research {
@@ -101,7 +102,12 @@ h1, h2 {
   line-height: 2rem;
   margin: 10px;
   padding: 15px;
+  transition: all 0.3s ease-in-out;
   width: 200px;
+}
+
+.country:hover {
+  background-color: hsla(42, 92%, 40%, 0.05);
 }
 
 .flag {
@@ -179,7 +185,7 @@ span {
 }
 
 .bar {
-  background-color: #edab14;
+  background-image: linear-gradient(90deg, hsla(42, 92%, 40%), hsla(42, 92%, 50%));
   border-radius: 3px;
   height: 40px;
 }
