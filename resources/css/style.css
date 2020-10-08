@@ -90,7 +90,7 @@ h1, h2 {
   box-shadow: #e1e1e1 0px 0px 2px 2px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .country {
@@ -175,6 +175,7 @@ span {
 
 .country-lang {
   justify-self: left;
+  text-align: left;
 }
 
 .bar {
@@ -196,4 +197,44 @@ a {
 
 a:hover {
   opacity: 0.8;
+}
+
+@media only screen and (max-width: 1200px) {
+
+  #search-bar {
+    width: 70%;
+  }
+
+  #sorted-results {
+    padding: 40px 80px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+
+  #search-bar {
+    width: 80%;
+  }
+
+  #sorted-results {
+    padding: 40px 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  #search-bar {
+    width: 90%;
+  }
+
+  #sort-options {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .first {
+    margin: 5px 0px;
+  }
 }
