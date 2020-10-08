@@ -2203,7 +2203,7 @@ const sortByPopulationSize = () => {
 
 // Code for second part of the page (top ten population and languages):
 
-// TODO Create the div for the top ten:
+// Create the div for the top ten:
 
 const topTen = document.getElementById('sorted-results');
 
@@ -2230,6 +2230,19 @@ const topTenSection = () => {
   }
 }
 
+// Change introduction sentence of second section:
+const topPopulation = document.getElementById('top-population');
+const topLanguages = document.getElementById('top-languages');
+const introductionSentence = document.getElementById('top-ten-pop-lang');
+
+const languagesSentence = () => {
+  introductionSentence.innerHTML = '10 most spoken languages in the World';
+}
+
+const populationSentence = () => {
+  introductionSentence.innerHTML = '10 most populated countries in the World';
+}
+
 
 // Call functions and add event listeners:
 
@@ -2241,3 +2254,5 @@ inputValue.addEventListener('input', displayMatchingCountries);
 countryName.addEventListener('click', sortByCountryName);
 capitalName.addEventListener('click', sortByCapitalName);
 populationSize.addEventListener('click', sortByPopulationSize);
+topPopulation.addEventListener('click', populationSentence);
+topLanguages.addEventListener('click', languagesSentence);
