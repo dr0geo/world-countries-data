@@ -2205,12 +2205,37 @@ const sortByPopulationSize = () => {
 
 // TODO Create the div for the top ten:
 
+const topTen = document.getElementById('sorted-results');
+
+const topTenSection = () => {
+  // Create a list of 10 sub-arrays with country names and population inside:
+  let topTenPopulationSortedArray = countries.map(item => {
+    return [item.name, item.population];
+  })
+  topTenPopulationSortedArray = topTenPopulationSortedArray.sort((a, b) => {
+    return b[1] - a[1];
+  });
+  topTenPopulationSortedArrayStr = topTenPopulationSortedArray.slice(0, 10).map(item => [item[0], item[1].toLocaleString('en')]);
+
+  // Create and populate the 10 div of the webpage:
+  for (let i = 0 ; i < 10 ; i++) {
+    topTen.innerHTML +=
+      `<p id="country-lang${i}" class="country-lang">${topTenPopulationSortedArrayStr[i][0]}</p>
+      <div id="bar${i}" class="bar"></div>
+      <p id="result${i}" class="number">${topTenPopulationSortedArrayStr[i][1]}`;
+    
+    // Adjust width of the bar relatively to the biggest population:
+    const maxPopulation = topTenPopulationSortedArray[0][1];
+    document.getElementById(`bar${i}`).style.width = topTenPopulationSortedArray[i][1] / maxPopulation * 100 + '%';
+  }
+}
 
 
 // Call functions and add event listeners:
 
 totalCountries();
 displayMatchingCountries();
+topTenSection();
 inputValue.addEventListener('input', filterCountries);
 inputValue.addEventListener('input', displayMatchingCountries);
 countryName.addEventListener('click', sortByCountryName);
