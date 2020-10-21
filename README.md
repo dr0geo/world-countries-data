@@ -1,4 +1,4 @@
-![alt text](https://github.com/dr0geo/world-countries-data/resources/screenshot/world_data.png)
+![alt text](https://github.com/dr0geo/world-countries-data/resources/screenshot/world_data.png?raw=true)
 
 Web page project using HTML, CSS and JS to display dynamic data about different countries of the World.
 
